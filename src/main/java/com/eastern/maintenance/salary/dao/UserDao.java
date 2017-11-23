@@ -5,9 +5,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-@Mapper
 public interface UserDao {
 
-    @Select("select * from user where user_id = #{userId} ")
-    User findUserById(@Param("userId") String userId);
+    User findUserById(String userId);
+
+    void updateUser(User user);
+
+    void removeUser(String userId);
+
+    void addUser(User user);
+
 }

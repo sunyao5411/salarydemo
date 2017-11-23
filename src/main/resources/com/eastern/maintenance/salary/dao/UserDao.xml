@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eastern.maintenance.salary.dao.UserDao">
+    <resultMap id="USER_RESULT_MAP" type="com.eastern.maintenance.salary.domain.User">
+
+        <id column="USER_ID" property="userId" />
+        <result column="USER_NAME" property="userName" />
+        <result column="POSITION_ID" property="positionId" />
+        <result column="DESCRIPTION" property="description" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATOR" property="creator" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="UPDATOR" property="updator" />
+
+    </resultMap>
+
+    <sql id="User_Column_List">
+      USER_ID,
+      USER_NAME,
+      POSITION_ID,
+      DESCRIPTION,
+      CREATE_TIME,
+      CREATOR,
+      UPDATE_TIME,
+      UPDATOR
+    </sql>
+
+    <delete id="removeUser" parameterType="java.lang.String">
+        DELETE FROM USER WHERE USER_ID= #{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="com.eastern.maintenance.salary.domain.User">
+        UPDATE USER
+        SET
+            <if test="userName != null">
+              USER_NAME = #{userName},
+            </if>
+            <if test="positionId != null">
+                POSITION_ID = #{positionId},
+            </if>
+            <if test="creator != null">
+                CREATOR = #{creator},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime},
+            </if>
+            <if test="updator != null">
+                UPDATOR = #{updator},
+            </if>
+            USER_ID = #{userId}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <select id="findUserById" resultMap="USER_RESULT_MAP">
+        SELECT
+        <include refid="User_Column_List"/>
+        FROM
+        USER
+        WHERE
+        USER_ID=#{userId}
+    </select>
+
+    <insert id="addUser" parameterType="com.eastern.maintenance.salary.domain.User">
+      INSERT INTO USER (<include refid="User_Column_List"/>)
+        VALUES
+        (
+        #{userId},
+        #{userName},
+        #{positionId},
+        #{description},
+        #{createTime},
+        #{creator},
+        #{updateTime},
+        #{updator}
+        )
+    </insert>
+</mapper>
