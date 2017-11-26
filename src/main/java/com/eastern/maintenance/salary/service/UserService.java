@@ -10,19 +10,19 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public void addUser(User user) {
-        userDao.addUser(user);
+    public void add(User user) {
+        userDao.add(user);
     }
 
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    public void update(User user) {
+        userDao.update(user);
     }
 
-    public void removeUser(String userId) {
-        userDao.removeUser(userId);
+    public void remove(String userId) {
+        userDao.remove(userId);
     }
 
-    public User findUserById(String userId) {
-        return this.userDao.findUserById(userId);
+    public User findById(String userId) {
+        return this.userDao.findById(userId);
     }
 }

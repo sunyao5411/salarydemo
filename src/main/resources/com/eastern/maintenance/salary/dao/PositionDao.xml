@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.eastern.maintenance.salary.dao.UserDao">
-    <resultMap id="USER_RESULT_MAP" type="com.eastern.maintenance.salary.domain.User">
+<mapper namespace="com.eastern.maintenance.salary.dao.PositionDao">
+    <resultMap id="POSITION_RESULT_MAP" type="com.eastern.maintenance.salary.domain.Position">
 
-        <id column="USER_ID" property="userId" />
-        <result column="USER_NAME" property="userName" />
-        <result column="POSITION_ID" property="positionId" />
+        <id column="POSITION_ID" property="positionId" />
+        <result column="POSITION_NAME" property="positionName" />
         <result column="DESCRIPTION" property="description" />
         <result column="CREATE_TIME" property="createTime" />
         <result column="CREATE_USER" property="createUser" />
@@ -14,10 +13,9 @@
 
     </resultMap>
 
-    <sql id="User_Column_List">
-      USER_ID,
-      USER_NAME,
+    <sql id="Position_Column_List">
       POSITION_ID,
+      POSITION_NAME,
       DESCRIPTION,
       CREATE_TIME,
       CREATE_USER,
@@ -26,17 +24,14 @@
     </sql>
 
     <delete id="remove" parameterType="java.lang.String">
-        DELETE FROM USER WHERE USER_ID= #{userId}
+        DELETE FROM POSITION WHERE POSITION_ID= #{positionId}
     </delete>
 
-    <update id="update" parameterType="com.eastern.maintenance.salary.domain.User">
-        UPDATE USER
+    <update id="update" parameterType="com.eastern.maintenance.salary.domain.Position">
+        UPDATE POSITION
         SET
-            <if test="userName != null">
-              USER_NAME = #{userName},
-            </if>
-            <if test="positionId != null">
-                POSITION_ID = #{positionId},
+            <if test="positionName != null">
+              POSITION_NAME = #{positionName},
             </if>
             <if test="createUser != null">
                 CREATE_USER = #{createUser},
@@ -53,26 +48,25 @@
             <if test="updateUser != null">
                 UPDATE_USER = #{updateUser},
             </if>
-            USER_ID = #{userId}
-        WHERE USER_ID = #{userId}
+            POSITION_ID = #{positionId}
+        WHERE POSITION_ID = #{positionId}
     </update>
 
-    <select id="findById" resultMap="USER_RESULT_MAP">
+    <select id="findById" resultMap="POSITION_RESULT_MAP">
         SELECT
-        <include refid="User_Column_List"/>
+        <include refid="Position_Column_List"/>
         FROM
-        USER
+        POSITION
         WHERE
-        USER_ID=#{userId}
+        POSITION_ID = #{positionId}
     </select>
 
-    <insert id="add" parameterType="com.eastern.maintenance.salary.domain.User">
-      INSERT INTO USER (<include refid="User_Column_List"/>)
+    <insert id="add" parameterType="com.eastern.maintenance.salary.domain.Position">
+      INSERT INTO POSITION (<include refid="Position_Column_List"/>)
         VALUES
         (
-        #{userId},
-        #{userName},
         #{positionId},
+        #{positionName},
         #{description},
         #{createTime},
         #{createUser},

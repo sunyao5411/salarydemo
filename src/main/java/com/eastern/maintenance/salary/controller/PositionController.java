@@ -1,6 +1,8 @@
 package com.eastern.maintenance.salary.controller;
 
+import com.eastern.maintenance.salary.domain.Position;
 import com.eastern.maintenance.salary.domain.User;
+import com.eastern.maintenance.salary.service.PositionService;
 import com.eastern.maintenance.salary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,20 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public class PositionController {
     @Autowired
-    private UserService userService;
+    private PositionService positionService;
 
-    @RequestMapping("/")
-    public String getMsg() {
-        return "hello";
-    }
-
-    @RequestMapping("/user/{userId}")
+    @RequestMapping("/position/{postionId}")
     @ResponseBody
-    public User getUserById(@PathVariable("userId") String userId) {
-        User user = userService.findById(userId);
-        return user;
+    public Position getPositionById(@PathVariable("positionId") String positionId) {
+        Position postion = positionService.findById(positionId);
+        return postion;
     }
 
 }

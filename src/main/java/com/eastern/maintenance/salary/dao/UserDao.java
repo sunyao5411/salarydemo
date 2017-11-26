@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Select;
 
 public interface UserDao {
 
-    User findUserById(String userId);
+    User findById(String userId);
 
-    void updateUser(User user);
+    void update(User user);
 
-    void removeUser(String userId);
+    void remove(String userId);
 
-    void addUser(User user);
+    void add(User user);
 
 }

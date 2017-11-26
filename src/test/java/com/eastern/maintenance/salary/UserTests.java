@@ -14,7 +14,7 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SalaryApplicationTests {
+public class UserTests {
 
 	@Autowired
 	private UserController userController;
@@ -28,14 +28,14 @@ public class SalaryApplicationTests {
 			user.setUserId("2");
 			user.setUserName("admin");
 			user.setCreateTime(new Date());
-			user.setCreator("admin");
+			user.setCreateUser("admin");
 			user.setPositionId("1");
-			userService.addUser(user);
-			User checkUser = userService.findUserById("2");
+			userService.add(user);
+			User checkUser = userService.findById("2");
 			Assert.assertEquals(checkUser.getUserName(), "admin");
-			Assert.assertEquals(checkUser.getCreator(), "admin");
+			Assert.assertEquals(checkUser.getCreateUser(), "admin");
 		} finally {
-			userService.removeUser("2");
+			userService.remove("2");
 		}
 	}
 
@@ -46,19 +46,19 @@ public class SalaryApplicationTests {
 			user.setUserId("2");
 			user.setUserName("admin");
 			user.setCreateTime(new Date());
-			user.setCreator("admin");
+			user.setCreateUser("admin");
 			user.setPositionId("1");
-			userService.addUser(user);
+			userService.add(user);
 			User newUser = new User();
 			newUser.setUserId("2");
 			newUser.setUserName("test");
-			newUser.setCreator("test");
-			userService.updateUser(newUser);
-			User checkUser = userService.findUserById("2");
+			newUser.setCreateUser("test");
+			userService.update(newUser);
+			User checkUser = userService.findById("2");
 			Assert.assertEquals(checkUser.getUserName(), "test");
-			Assert.assertEquals(checkUser.getCreator(), "test");
+			Assert.assertEquals(checkUser.getCreateUser(), "test");
 		} finally {
-			userService.removeUser("2");
+			userService.remove("2");
 		}
 	}
 

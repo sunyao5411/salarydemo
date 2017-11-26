@@ -3,12 +3,12 @@
 /* Created on:     2017/11/19 13:37:59                          */
 /*==============================================================*/
 
+drop table if exists SALARY;
+
+drop table if exists USER;
 
 drop table if exists POSITION;
 
-drop table if exists SALARIES;
-
-drop table if exists USER;
 
 /*==============================================================*/
 /* Table: POSITION                                              */
@@ -18,18 +18,20 @@ create table POSITION
    POSITION_ID          varchar(64) not null,
    POSITION_NAME        varchar(64),
    DESCRIPTION          text,
+   CREATE_TIME          date,
+   CREATE_USER          varchar(64),
+   UPDATE_TIME          date,
+   UPDATE_USER          varchar(64),
    primary key (POSITION_ID)
 );
 
 /*==============================================================*/
-/* Table: SALARIES                                              */
+/* Table: SALARY                                                */
 /*==============================================================*/
-create table SALARIES
+create table SALARY
 (
    SALARY_ID            varbinary(64) not null,
    USER_ID              varchar(64),
-   CREATOR_ID           varchar(64),
-   UPDATOR_ID           varchar(64),
    COEFFICIENT          float,
    KPI                  float,
    LABOR                float,
@@ -44,7 +46,9 @@ create table SALARIES
    TOTAL_SALARY         int,
    MONTH                date,
    CREATE_TIME          date,
+   CREATE_USER          varchar(64),
    UPDATE_TIME          date,
+   UPDATE_USER          varchar(64),
    primary key (SALARY_ID)
 );
 
@@ -58,19 +62,13 @@ create table USER
    POSITION_ID          varchar(64),
    DESCRIPTION          text,
    CREATE_TIME          date,
-   CREATOR              varchar(64),
+   CREATE_USER          varchar(64),
    UPDATE_TIME          date,
-   UPDATOR              varchar(64),
+   UPDATE_USER          varchar(64),
    primary key (USER_ID)
 );
 
-alter table SALARIES add constraint FK_Reference_2 foreign key (USER_ID)
-      references USER (USER_ID) on delete restrict on update restrict;
-
-alter table SALARIES add constraint FK_Reference_3 foreign key (CREATOR_ID)
-      references USER (USER_ID) on delete restrict on update restrict;
-
-alter table SALARIES add constraint FK_Reference_4 foreign key (UPDATOR_ID)
+alter table SALARY add constraint FK_Reference_2 foreign key (USER_ID)
       references USER (USER_ID) on delete restrict on update restrict;
 
 alter table USER add constraint FK_Reference_1 foreign key (POSITION_ID)
