@@ -14,51 +14,60 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserTests {
-
-	@Autowired
-	private UserController userController;
+public class UserServiceTests {
 
 	@Autowired
 	private UserService userService;
 	@Test
 	public void testAdd() {
+	    String userId = "";
 		try {
 			User user = new User();
-			user.setUserId("2");
 			user.setUserName("admin");
+			user.setPassword("admin");
+			user.setEmail("admin@yourcompany.com");
 			user.setCreateTime(new Date());
 			user.setCreateUser("admin");
 			user.setPositionId("1");
 			userService.add(user);
-			User checkUser = userService.findById("2");
+			userId = user.getUserId();
+			User checkUser = userService.findById(userId);
 			Assert.assertEquals(checkUser.getUserName(), "admin");
 			Assert.assertEquals(checkUser.getCreateUser(), "admin");
+			Assert.assertEquals(checkUser.getPassword(), "admin");
+			Assert.assertEquals(checkUser.getEmail(), "admin@yourcompany.com");
 		} finally {
-			userService.remove("2");
+			userService.remove(userId);
 		}
 	}
 
 	@Test
 	public void testUpdate() {
+        String userId = "";
 		try {
 			User user = new User();
-			user.setUserId("2");
 			user.setUserName("admin");
+			user.setPassword("admin");
+			user.setEmail("admin@yourcompany.com");
 			user.setCreateTime(new Date());
 			user.setCreateUser("admin");
 			user.setPositionId("1");
 			userService.add(user);
+			userId = user.getUserId();
 			User newUser = new User();
-			newUser.setUserId("2");
+			newUser.setUserId(userId);
 			newUser.setUserName("test");
+			newUser.setPassword("test");
+			newUser.setEmail("test@yourcompany.com");
 			newUser.setCreateUser("test");
 			userService.update(newUser);
-			User checkUser = userService.findById("2");
+			User checkUser = userService.findById(userId);
 			Assert.assertEquals(checkUser.getUserName(), "test");
 			Assert.assertEquals(checkUser.getCreateUser(), "test");
+			Assert.assertEquals(checkUser.getEmail(), "test@yourcompany.com");
+			Assert.assertEquals(checkUser.getPassword(), "test");
 		} finally {
-			userService.remove("2");
+			userService.remove(userId);
 		}
 	}
 

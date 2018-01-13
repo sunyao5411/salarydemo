@@ -3,6 +3,9 @@ package com.eastern.maintenance.salary.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ *
+ */
 public class Salary implements Serializable{
     private String salaryId;
     private String userId;
@@ -17,13 +20,25 @@ public class Salary implements Serializable{
     private int compactSalary;
     private int testResult;
     private int examineBonus;
+    private int year;
     private int totalSalary;
-    private Date month;
+    private int month;
     private Date createTime;
     private String createUser;
     private Date updateTime;
     private String updateUser;
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
     public String getSalaryId() {
         return salaryId;
     }
@@ -134,14 +149,6 @@ public class Salary implements Serializable{
 
     public void setTotalSalary(int totalSalary) {
         this.totalSalary = totalSalary;
-    }
-
-    public Date getMonth() {
-        return month;
-    }
-
-    public void setMonth(Date month) {
-        this.month = month;
     }
 
     public Date getCreateTime() {

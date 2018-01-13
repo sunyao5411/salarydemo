@@ -16,7 +16,7 @@ import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PositionTests {
+public class PositionServiceTests {
 
 	@Autowired
 	private PositionService positionService;

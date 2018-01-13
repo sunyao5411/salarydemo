@@ -2,6 +2,7 @@ package com.eastern.maintenance.salary.service;
 
 import com.eastern.maintenance.salary.dao.UserDao;
 import com.eastern.maintenance.salary.domain.User;
+import com.eastern.maintenance.salary.utils.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ public class UserService {
     private UserDao userDao;
 
     public void add(User user) {
+        user.setUserId(IDGenerator.generateUniqueId());
         userDao.add(user);
     }
 

@@ -3,13 +3,12 @@ package com.eastern.maintenance.salary.controller;
 import com.eastern.maintenance.salary.domain.User;
 import com.eastern.maintenance.salary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -19,11 +18,21 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping("/user/{userId}")
+    @RequestMapping("/{userId}")
     @ResponseBody
     public User getUserById(@PathVariable("userId") String userId) {
         User user = userService.findById(userId);
         return user;
+    }
+
+    @RequestMapping("/")
+    public void AddUser(@PathParam("user") User user) {
+        userService.add(user);
+    }
+
+    @RequestMapping("/{userId}")
+    public void removeUser(@PathVariable("userId") String userId) {
+        userService.remove(userId);
     }
 
 }

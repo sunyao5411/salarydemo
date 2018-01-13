@@ -5,7 +5,9 @@
 
         <id column="USER_ID" property="userId" />
         <result column="USER_NAME" property="userName" />
+        <result column="PASSWORD" property="password" />
         <result column="POSITION_ID" property="positionId" />
+        <result column="EMAIL" property="email" />
         <result column="DESCRIPTION" property="description" />
         <result column="CREATE_TIME" property="createTime" />
         <result column="CREATE_USER" property="createUser" />
@@ -17,7 +19,9 @@
     <sql id="User_Column_List">
       USER_ID,
       USER_NAME,
+      PASSWORD,
       POSITION_ID,
+      EMAIL,
       DESCRIPTION,
       CREATE_TIME,
       CREATE_USER,
@@ -35,6 +39,9 @@
             <if test="userName != null">
               USER_NAME = #{userName},
             </if>
+            <if test="password != null">
+              PASSWORD = #{password},
+            </if>
             <if test="positionId != null">
                 POSITION_ID = #{positionId},
             </if>
@@ -43,6 +50,9 @@
             </if>
             <if test="createTime != null">
                 CREATE_TIME = #{createTime},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email},
             </if>
             <if test="description != null">
                 DESCRIPTION = #{description},
@@ -72,7 +82,9 @@
         (
         #{userId},
         #{userName},
+        #{password},
         #{positionId},
+        #{email},
         #{description},
         #{createTime},
         #{createUser},
