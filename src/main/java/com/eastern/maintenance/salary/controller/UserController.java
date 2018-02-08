@@ -3,36 +3,50 @@ package com.eastern.maintenance.salary.controller;
 import com.eastern.maintenance.salary.domain.User;
 import com.eastern.maintenance.salary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@Path("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
+    @GET
     public String getMsg() {
         return "hello";
     }
 
-    @RequestMapping("/{userId}")
-    @ResponseBody
+    @GET
+    @Path("/{userId}")
     public User getUserById(@PathVariable("userId") String userId) {
+        if (StringUtils.isEmpty(userId)) {
+            return null;
+        }
         User user = userService.findById(userId);
         return user;
     }
 
-    @RequestMapping("/")
-    public void AddUser(@PathParam("user") User user) {
-        userService.add(user);
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void AddUser(User user) {
+        userService.create(user);
     }
 
-    @RequestMapping("/{userId}")
-    public void removeUser(@PathVariable("userId") String userId) {
+    @DELETE
+    @Path("/{userId}")
+    public void removeUser(@PathParam("userId") String userId) {
         userService.remove(userId);
+    }
+
+    @GET
+    @Path("/list")
+    public List<User> queryAllUsers() {
+        return userService.queryAll();
     }
 
 }

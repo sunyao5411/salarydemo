@@ -74,4 +74,8 @@
         #{updateUser}
         )
     </insert>
+
+    <select id="list" resultMap="POSITION_RESULT_MAP">
+        select * from POSITION
+    </select>
 </mapper>

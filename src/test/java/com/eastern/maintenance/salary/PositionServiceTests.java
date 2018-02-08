@@ -1,10 +1,7 @@
 package com.eastern.maintenance.salary;
 
-import com.eastern.maintenance.salary.controller.UserController;
 import com.eastern.maintenance.salary.domain.Position;
-import com.eastern.maintenance.salary.domain.User;
 import com.eastern.maintenance.salary.service.PositionService;
-import com.eastern.maintenance.salary.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,41 +20,51 @@ public class PositionServiceTests {
 	private PositionService positionService;
 	@Test
 	public void testAdd() {
+		String id = null;
 		try {
 			Position position = new Position();
-			position.setPositionId("10");
 			position.setPositionName("10");
 			position.setCreateTime(new Date());
 			position.setCreateUser("admin");
-			positionService.add(position);
-			Position checkPosition = positionService.findById("10");
+			positionService.create(position);
+			id = position.getPositionId();
+			Position checkPosition = positionService.findById(id);
 			Assert.assertEquals(checkPosition.getPositionName(), "10");
 			Assert.assertEquals(checkPosition.getCreateUser(), "admin");
+			List<Position> positionList = positionService.queryAll();
+			for (Position p : positionList) {
+				System.out.println("### position name: " + p.getPositionName());
+			}
 		} finally {
-			positionService.remove("10");
+			if (id != null) {
+				positionService.remove(id);
+			}
 		}
 	}
 
 	@Test
 	public void testUpdate() {
+		String id = null;
 		try {
 			Position position = new Position();
-			position.setPositionId("10");
 			position.setPositionName("10");
 			position.setCreateTime(new Date());
 			position.setCreateUser("admin");
-			positionService.add(position);
+			positionService.create(position);
+			id = position.getPositionId();
 			Position position1 = new Position();
-			position1.setPositionId("10");
+			position1.setPositionId(id);
 			position1.setPositionName("100");
 			position1.setUpdateTime(new Date());
 			position1.setUpdateUser("test");
 			positionService.update(position1);
-			Position checkPosition = positionService.findById("10");
+			Position checkPosition = positionService.findById(id);
 			Assert.assertEquals(checkPosition.getPositionName(), "100");
 			Assert.assertEquals(checkPosition.getUpdateUser(), "test");
 		} finally {
-			positionService.remove("10");
+			if (id != null) {
+				positionService.remove(id);
+			}
 		}
 	}
 

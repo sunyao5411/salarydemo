@@ -1,9 +1,8 @@
 package com.eastern.maintenance.salary.dao;
 
 import com.eastern.maintenance.salary.domain.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface UserDao {
 
@@ -14,5 +13,7 @@ public interface UserDao {
     void remove(String userId);
 
     void add(User user);
+
+    List<User> list();
 
 }

@@ -10,6 +10,7 @@ public class User implements Serializable {
     private String userId;
     private String userName;
     private String password;
+    private String displayName;
     private String positionId;
     private String email;
     private String description;
@@ -95,5 +96,13 @@ public class User implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

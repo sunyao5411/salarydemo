@@ -6,17 +6,19 @@ import com.eastern.maintenance.salary.utils.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public void add(User user) {
+    public void create(User user) {
         user.setUserId(IDGenerator.generateUniqueId());
         userDao.add(user);
     }
 
-    public void update(User user) {
+    public void modify(User user) {
         userDao.update(user);
     }
 
@@ -26,5 +28,9 @@ public class UserService {
 
     public User findById(String userId) {
         return this.userDao.findById(userId);
+    }
+
+    public List<User> queryAll() {
+        return this.userDao.list();
     }
 }

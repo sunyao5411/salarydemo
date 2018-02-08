@@ -8,12 +8,14 @@ import com.eastern.maintenance.salary.utils.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PositionService {
     @Autowired
     private PositionDao positionDao;
 
-    public void add(Position position) {
+    public void create(Position position) {
         position.setPositionId(IDGenerator.generateUniqueId());
         positionDao.add(position);
     }
@@ -28,5 +30,9 @@ public class PositionService {
 
     public Position findById(String positionId) {
         return positionDao.findById(positionId);
+    }
+
+    public List<Position> queryAll() {
+        return this.positionDao.list();
     }
 }

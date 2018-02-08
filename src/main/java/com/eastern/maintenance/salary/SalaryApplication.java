@@ -11,6 +11,11 @@ import org.springframework.context.annotation.ComponentScan;
 public class SalaryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SalaryApplication.class, args);
+//		SpringApplication.run(SalaryApplication.class, args);
+		test();
+	}
+
+	public static void test() {
+		System.out.println(1.0000 == 1);
 	}
 }

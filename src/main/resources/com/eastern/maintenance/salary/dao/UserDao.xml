@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eastern.maintenance.salary.dao.UserDao">
-    <resultMap id="USER_RESULT_MAP" type="com.eastern.maintenance.salary.domain.User">
+    <resultMap id="RESULT_MAP" type="com.eastern.maintenance.salary.domain.User">
 
         <id column="USER_ID" property="userId" />
         <result column="USER_NAME" property="userName" />
         <result column="PASSWORD" property="password" />
+        <result column="DISPLAY_NAME" property="displayName" />
         <result column="POSITION_ID" property="positionId" />
         <result column="EMAIL" property="email" />
         <result column="DESCRIPTION" property="description" />
@@ -16,10 +17,11 @@
 
     </resultMap>
 
-    <sql id="User_Column_List">
+    <sql id="Column_List">
       USER_ID,
       USER_NAME,
       PASSWORD,
+      DISPLAY_NAME,
       POSITION_ID,
       EMAIL,
       DESCRIPTION,
@@ -41,6 +43,9 @@
             </if>
             <if test="password != null">
               PASSWORD = #{password},
+            </if>
+            <if test="displayName != null">
+              DISPLAY_NAME = #{displayName},
             </if>
             <if test="positionId != null">
                 POSITION_ID = #{positionId},
@@ -67,9 +72,9 @@
         WHERE USER_ID = #{userId}
     </update>
 
-    <select id="findById" resultMap="USER_RESULT_MAP">
+    <select id="findById" resultMap="RESULT_MAP">
         SELECT
-        <include refid="User_Column_List"/>
+        <include refid="Column_List"/>
         FROM
         USER
         WHERE
@@ -77,12 +82,13 @@
     </select>
 
     <insert id="add" parameterType="com.eastern.maintenance.salary.domain.User">
-      INSERT INTO USER (<include refid="User_Column_List"/>)
+      INSERT INTO USER (<include refid="Column_List"/>)
         VALUES
         (
         #{userId},
         #{userName},
         #{password},
+        #{displayName},
         #{positionId},
         #{email},
         #{description},
@@ -92,4 +98,8 @@
         #{updateUser}
         )
     </insert>
+
+    <select id="list" resultMap="RESULT_MAP">
+        select * from USER
+    </select>
 </mapper>

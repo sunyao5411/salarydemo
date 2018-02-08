@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eastern.maintenance.salary.dao.SalaryDao">
+    <resultMap id="RESULT_MAP" type="com.eastern.maintenance.salary.domain.Salary">
+
+        <id column="SALARY_ID" property="salaryId" />
+        <result column="USER_ID" property="userId" />
+        <result column="COEFFICIENT" property="coefficient" />
+        <result column="KPI" property="kpi" />
+        <result column="LABOR" property="labor" />
+        <result column="LABOR_BONUS" property="laborBonus" />
+        <result column="PASS_SMALL" property="passSmall" />
+        <result column="PASS_BIG" property="passBig" />
+        <result column="ADJUST" property="adjust" />
+        <result column="PASS_BONUS" property="passBonus" />
+        <result column="COMPACT_SALARY" property="compactSalary" />
+        <result column="TEST_RESULT" property="testResult" />
+        <result column="EXAMINE_BONUS" property="examineBonus" />
+        <result column="YEAR" property="year" />
+        <result column="MONTH" property="month" />
+        <result column="TOTAL_SALARY" property="totalSalary" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="UPDATE_USER" property="updateUser" />
+
+    </resultMap>
+
+    <sql id="Column_List">
+      SALARY_ID,
+      USER_ID,
+      COEFFICIENT,
+      KPI,
+      LABOR,
+      LABOR_BONUS,
+      PASS_SMALL,
+      PASS_BIG,
+      ADJUST,
+      PASS_BONUS,
+      COMPACT_SALARY,
+      TEST_RESULT,
+      EXAMINE_BONUS,
+      YEAR,
+      MONTH,
+      TOTAL_SALARY,
+      CREATE_TIME,
+      CREATE_USER,
+      UPDATE_TIME,
+      UPDATE_USER
+    </sql>
+
+    <delete id="remove" parameterType="java.lang.String">
+        DELETE FROM SALARY WHERE SALARY_ID= #{salaryId}
+    </delete>
+
+    <update id="update" parameterType="com.eastern.maintenance.salary.domain.Salary">
+        UPDATE SALARY
+        SET
+            <if test="userId != null">
+              USER_ID = #{userId},
+            </if>
+            <if test="coefficient != null">
+                COEFFICIENT = #{coefficient},
+            </if>
+            <if test="kpi != null">
+                KPI = #{kpi},
+            </if>
+            <if test="labor != null">
+                LABOR = #{labor},
+            </if>
+            <if test="laborBonus != null">
+                LABOR_BONUS = #{laborBonus},
+            </if>
+            <if test="passSmall != null">
+                PASS_SMALL = #{passSmall},
+            </if>
+            <if test="passBig != null">
+                PASS_BIG = #{passBig},
+            </if>
+            <if test="adjust != null">
+                ADJUST = #{adjust},
+            </if>
+            <if test="passBonus != null">
+                PASS_BONUS = #{passBonus},
+            </if>
+            <if test="compactSalary != null">
+                COMPACT_SALARY = #{compactSalary},
+            </if>
+            <if test="testResult != null">
+                TEST_RESULT = #{testResult},
+            </if>
+            <if test="examineBonus != null">
+                EXAMINE_BONUS = #{examineBonus},
+            </if>
+            <if test="year != null">
+                YEAR = #{year},
+            </if>
+            <if test="totalSalary != null">
+                TOTAL_SALARY = #{totalSalary},
+            </if>
+            <if test="month != null">
+                MONTH = #{month},
+            </if>
+            <if test="createUser != null">
+                CREATE_USER = #{createUser},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime},
+            </if>
+            <if test="updateUser != null">
+                UPDATE_USER = #{updateUser},
+            </if>
+            SALARY_ID = #{salaryId}
+        WHERE SALARY_ID = #{salaryId}
+    </update>
+
+    <select id="findById" resultMap="RESULT_MAP">
+        SELECT
+        <include refid="Column_List"/>
+        FROM
+        SALARY
+        WHERE
+        SALARY_ID = #{salaryId}
+    </select>
+
+    <insert id="add" parameterType="com.eastern.maintenance.salary.domain.Salary">
+      INSERT INTO SALARY (<include refid="Column_List"/>)
+        VALUES
+        (
+        #{userId},
+        #{coefficient},
+        #{kpi},
+        #{labor},
+        #{laborBonus},
+        #{passSmall},
+        #{passBig},
+        #{adjust},
+        #{passBonus},
+        #{compactSalary},
+        #{testResult},
+        #{examineBonus},
+        #{year},
+        #{month},
+        #{totalSalary},
+        #{createTime},
+        #{createUser},
+        #{updateTime},
+        #{updateUser}
+        )
+    </insert>
+
+    <select id="list" resultMap="RESULT_MAP">
+        select * from SALARY
+    </select>
+</mapper>

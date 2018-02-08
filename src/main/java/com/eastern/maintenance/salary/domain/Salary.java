@@ -9,6 +9,7 @@ import java.util.Date;
 public class Salary implements Serializable{
     private String salaryId;
     private String userId;
+    private String userName;
     private float coefficient;
     private float kpi;
     private float labor;
@@ -21,8 +22,8 @@ public class Salary implements Serializable{
     private int testResult;
     private int examineBonus;
     private int year;
-    private int totalSalary;
     private int month;
+    private int totalSalary;
     private Date createTime;
     private String createUser;
     private Date updateTime;
@@ -181,5 +182,13 @@ public class Salary implements Serializable{
 
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
