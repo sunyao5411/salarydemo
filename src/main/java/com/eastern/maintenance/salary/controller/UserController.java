@@ -2,8 +2,8 @@ package com.eastern.maintenance.salary.controller;
 
 import com.eastern.maintenance.salary.domain.User;
 import com.eastern.maintenance.salary.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.*;
