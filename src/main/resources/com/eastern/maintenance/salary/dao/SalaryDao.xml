@@ -5,6 +5,7 @@
 
         <id column="SALARY_ID" property="salaryId" />
         <result column="USER_ID" property="userId" />
+        <result column="USER_NAME" property="userName" />
         <result column="COEFFICIENT" property="coefficient" />
         <result column="KPI" property="kpi" />
         <result column="LABOR" property="labor" />
@@ -23,12 +24,14 @@
         <result column="CREATE_USER" property="createUser" />
         <result column="UPDATE_TIME" property="updateTime" />
         <result column="UPDATE_USER" property="updateUser" />
+        <result column="DESCRIPTION" property="description" />
 
     </resultMap>
 
     <sql id="Column_List">
       SALARY_ID,
       USER_ID,
+      USER_NAME,
       COEFFICIENT,
       KPI,
       LABOR,
@@ -46,7 +49,8 @@
       CREATE_TIME,
       CREATE_USER,
       UPDATE_TIME,
-      UPDATE_USER
+      UPDATE_USER,
+      DESCRIPTION
     </sql>
 
     <delete id="remove" parameterType="java.lang.String">
@@ -58,6 +62,9 @@
         SET
             <if test="userId != null">
               USER_ID = #{userId},
+            </if>
+            <if test="userName != null">
+              USER_NAME = #{userName},
             </if>
             <if test="coefficient != null">
                 COEFFICIENT = #{coefficient},
@@ -133,7 +140,9 @@
       INSERT INTO SALARY (<include refid="Column_List"/>)
         VALUES
         (
+        #{salaryId},
         #{userId},
+        #{userName},
         #{coefficient},
         #{kpi},
         #{labor},
@@ -151,7 +160,8 @@
         #{createTime},
         #{createUser},
         #{updateTime},
-        #{updateUser}
+        #{updateUser},
+        #{description}
         )
     </insert>
 

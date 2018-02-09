@@ -16,18 +16,19 @@ public class Salary implements Serializable{
     private float laborBonus;
     private int passSmall;
     private int passBig;
-    private int adjust;
-    private int passBonus;
-    private int compactSalary;
+    private long adjust;
+    private long passBonus;
+    private long compactSalary;
     private int testResult;
     private int examineBonus;
     private int year;
     private int month;
-    private int totalSalary;
+    private long totalSalary;
     private Date createTime;
     private String createUser;
     private Date updateTime;
     private String updateUser;
+    private String description;
 
     public int getYear() {
         return year;
@@ -39,6 +40,10 @@ public class Salary implements Serializable{
 
     public void setMonth(int month) {
         this.month = month;
+    }
+
+    public int getMonth() {
+        return this.month;
     }
     public String getSalaryId() {
         return salaryId;
@@ -104,27 +109,27 @@ public class Salary implements Serializable{
         this.passBig = passBig;
     }
 
-    public int getAdjust() {
+    public long getAdjust() {
         return adjust;
     }
 
-    public void setAdjust(int adjust) {
+    public void setAdjust(long adjust) {
         this.adjust = adjust;
     }
 
-    public int getPassBonus() {
+    public long getPassBonus() {
         return passBonus;
     }
 
-    public void setPassBonus(int passBonus) {
+    public void setPassBonus(long passBonus) {
         this.passBonus = passBonus;
     }
 
-    public int getCompactSalary() {
+    public long getCompactSalary() {
         return compactSalary;
     }
 
-    public void setCompactSalary(int compactSalary) {
+    public void setCompactSalary(long compactSalary) {
         this.compactSalary = compactSalary;
     }
 
@@ -144,11 +149,11 @@ public class Salary implements Serializable{
         this.examineBonus = examineBonus;
     }
 
-    public int getTotalSalary() {
+    public long getTotalSalary() {
         return totalSalary;
     }
 
-    public void setTotalSalary(int totalSalary) {
+    public void setTotalSalary(long totalSalary) {
         this.totalSalary = totalSalary;
     }
 
@@ -190,5 +195,13 @@ public class Salary implements Serializable{
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
