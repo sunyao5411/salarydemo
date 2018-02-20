@@ -24,13 +24,15 @@ public class PositionServiceTests {
 		try {
 			Position position = new Position();
 			position.setPositionName("10");
-			position.setCreateTime(new Date());
+			Date date = new Date();
+			position.setCreateTime(date);
 			position.setCreateUser("admin");
 			positionService.create(position);
 			id = position.getPositionId();
-			Position checkPosition = positionService.findById(id);
-			Assert.assertEquals(checkPosition.getPositionName(), "10");
-			Assert.assertEquals(checkPosition.getCreateUser(), "admin");
+			Position checker = positionService.findById(id);
+			Assert.assertEquals(checker.getPositionName(), "10");
+			Assert.assertEquals(checker.getCreateUser(), "admin");
+			Assert.assertEquals(checker.getCreateTime().toString(), date.toString());
 			List<Position> positionList = positionService.queryAll();
 			for (Position p : positionList) {
 				System.out.println("### position name: " + p.getPositionName());
@@ -55,12 +57,14 @@ public class PositionServiceTests {
 			Position position1 = new Position();
 			position1.setPositionId(id);
 			position1.setPositionName("100");
-			position1.setUpdateTime(new Date());
+			Date date = new Date();
+			position1.setUpdateTime(date);
 			position1.setUpdateUser("test");
 			positionService.update(position1);
-			Position checkPosition = positionService.findById(id);
-			Assert.assertEquals(checkPosition.getPositionName(), "100");
-			Assert.assertEquals(checkPosition.getUpdateUser(), "test");
+			Position checker = positionService.findById(id);
+			Assert.assertEquals(checker.getPositionName(), "100");
+			Assert.assertEquals(checker.getUpdateUser(), "test");
+			Assert.assertEquals(checker.getUpdateTime().toString(), date.toString());
 		} finally {
 			if (id != null) {
 				positionService.remove(id);

@@ -59,8 +59,13 @@
 			<version>0.9.5.2</version>
 		</dependency>
 
-		<!-- RestEasy -->
 		<dependency>
+			<groupId>com.paypal.springboot</groupId>
+			<artifactId>resteasy-spring-boot-starter</artifactId>
+			<version>2.3.0-RELEASE</version>
+		</dependency>
+		<!-- RestEasy -->
+		<!--<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
 			<version>3.0.18.Final</version>
@@ -74,7 +79,7 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-spring</artifactId>
 			<version>3.0.18.Final</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>

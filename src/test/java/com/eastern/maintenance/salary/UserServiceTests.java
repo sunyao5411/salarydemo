@@ -27,25 +27,27 @@ public class UserServiceTests {
 			user.setPassword("admin");
 			user.setDisplayName("超级管理员");
 			user.setEmail("admin@yourcompany.com");
-			user.setCreateTime(new Date());
+			Date date = new Date();
+			user.setCreateTime(date);
 			user.setCreateUser("admin");
 			user.setPositionId("1");
 			userService.create(user);
 			id = user.getUserId();
-			User checkUser = userService.findById(id);
-			Assert.assertEquals(checkUser.getUserName(), "admin");
-			Assert.assertEquals(checkUser.getCreateUser(), "admin");
-			Assert.assertEquals(checkUser.getPassword(), "admin");
-			Assert.assertEquals(checkUser.getDisplayName(), "超级管理员");
-			Assert.assertEquals(checkUser.getEmail(), "admin@yourcompany.com");
+			User checker = userService.findById(id);
+			Assert.assertEquals(checker.getUserName(), "admin");
+			Assert.assertEquals(checker.getCreateUser(), "admin");
+			Assert.assertEquals(checker.getPassword(), "admin");
+			Assert.assertEquals(checker.getDisplayName(), "超级管理员");
+			Assert.assertEquals(checker.getEmail(), "admin@yourcompany.com");
+			Assert.assertEquals(checker.getCreateTime().toString(), date.toString());
 			List<User> userList = userService.queryAll();
 			for (User u : userList) {
 				System.out.println("### user name: " + u.getUserName());
 			}
 		} finally {
-//			if (id != null) {
-//				userService.remove(id);
-//			}
+			if (id != null) {
+				userService.remove(id);
+			}
 		}
 	}
 
@@ -68,12 +70,15 @@ public class UserServiceTests {
 			newUser.setPassword("test");
 			newUser.setEmail("test@yourcompany.com");
 			newUser.setCreateUser("test");
+			Date date = new Date();
+			newUser.setUpdateTime(date);
 			userService.modify(newUser);
-			User checkUser = userService.findById(id);
-			Assert.assertEquals(checkUser.getUserName(), "test");
-			Assert.assertEquals(checkUser.getCreateUser(), "test");
-			Assert.assertEquals(checkUser.getEmail(), "test@yourcompany.com");
-			Assert.assertEquals(checkUser.getPassword(), "test");
+			User checker = userService.findById(id);
+			Assert.assertEquals(checker.getUserName(), "test");
+			Assert.assertEquals(checker.getCreateUser(), "test");
+			Assert.assertEquals(checker.getEmail(), "test@yourcompany.com");
+			Assert.assertEquals(checker.getPassword(), "test");
+			Assert.assertEquals(checker.getUpdateTime().toString(), date.toString());
 		} finally {
 			if (id != null) {
 				userService.remove(id);

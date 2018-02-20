@@ -17,6 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GET
+    @Path("/")
     public String getMsg() {
         return "hello";
     }

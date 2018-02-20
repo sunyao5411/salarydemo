@@ -1,16 +1,16 @@
 package com.eastern.maintenance.salary.service;
 
 import com.eastern.maintenance.salary.dao.PositionDao;
-import com.eastern.maintenance.salary.dao.UserDao;
 import com.eastern.maintenance.salary.domain.Position;
-import com.eastern.maintenance.salary.domain.User;
 import com.eastern.maintenance.salary.utils.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class PositionService {
     @Autowired
     private PositionDao positionDao;

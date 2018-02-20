@@ -72,9 +72,9 @@ public class SalaryServiceTests {
 				System.out.println("### user name: " + s.getUserName());
 			}
 		} finally {
-//			if (id != null) {
-//				salaryService.remove(id);
-//			}
+			if (id != null) {
+				salaryService.remove(id);
+			}
 		}
 	}
 
@@ -127,28 +127,28 @@ public class SalaryServiceTests {
             newSalary.setUpdateUser("admin1");
             newSalary.setDescription("test123");
             salaryService.update(newSalary);
-            Salary checkSalary = salaryService.findById(id);
-            Assert.assertEquals(checkSalary.getUserId(), "2");
-            Assert.assertEquals(checkSalary.getUserName(), "admin123");
-            Assert.assertEquals(String.valueOf(checkSalary.getCoefficient()), String.valueOf(1.0f));
-            Assert.assertEquals(String.valueOf(checkSalary.getKpi()), String.valueOf(900f));
-            Assert.assertEquals(String.valueOf(checkSalary.getLabor()), String.valueOf(100f));
-            Assert.assertEquals(String.valueOf(checkSalary.getLaborBonus()), String.valueOf(3000f));
-            Assert.assertEquals(checkSalary.getPassSmall(), 60);
-            Assert.assertEquals(checkSalary.getPassBig(), 1);
-            Assert.assertEquals(checkSalary.getAdjust(), 1500);
-            Assert.assertEquals(checkSalary.getPassBonus(), 1000);
-            Assert.assertEquals(checkSalary.getCompactSalary(), 7000);
-            Assert.assertEquals(checkSalary.getTestResult(), 100);
-            Assert.assertEquals(checkSalary.getExamineBonus(), 600);
-            Assert.assertEquals(checkSalary.getTotalSalary(), 7000);
-            Assert.assertEquals(checkSalary.getYear(), 2019);
-            Assert.assertEquals(checkSalary.getMonth(), 5);
-            Assert.assertEquals(checkSalary.getCreateTime().toString(), date.toString());
-            Assert.assertEquals(checkSalary.getCreateUser(), "admin");
-            Assert.assertEquals(checkSalary.getUpdateTime().toString(), date1.toString());
-            Assert.assertEquals(checkSalary.getUpdateUser(), "admin1");
-            Assert.assertEquals(checkSalary.getDescription(), "test123");
+            Salary checker = salaryService.findById(id);
+            Assert.assertEquals(checker.getUserId(), "2");
+            Assert.assertEquals(checker.getUserName(), "admin123");
+            Assert.assertEquals(String.valueOf(checker.getCoefficient()), String.valueOf(1.0f));
+            Assert.assertEquals(String.valueOf(checker.getKpi()), String.valueOf(900f));
+            Assert.assertEquals(String.valueOf(checker.getLabor()), String.valueOf(100f));
+            Assert.assertEquals(String.valueOf(checker.getLaborBonus()), String.valueOf(3000f));
+            Assert.assertEquals(checker.getPassSmall(), 60);
+            Assert.assertEquals(checker.getPassBig(), 1);
+            Assert.assertEquals(checker.getAdjust(), 1500);
+            Assert.assertEquals(checker.getPassBonus(), 1000);
+            Assert.assertEquals(checker.getCompactSalary(), 7000);
+            Assert.assertEquals(checker.getTestResult(), 100);
+            Assert.assertEquals(checker.getExamineBonus(), 600);
+            Assert.assertEquals(checker.getTotalSalary(), 7000);
+            Assert.assertEquals(checker.getYear(), 2019);
+            Assert.assertEquals(checker.getMonth(), 5);
+            Assert.assertEquals(checker.getCreateTime().toString(), date.toString());
+            Assert.assertEquals(checker.getCreateUser(), "admin");
+            Assert.assertEquals(checker.getUpdateTime().toString(), date1.toString());
+            Assert.assertEquals(checker.getUpdateUser(), "admin1");
+            Assert.assertEquals(checker.getDescription(), "test123");
 		} finally {
 			if (id != null) {
 				salaryService.remove(id);
