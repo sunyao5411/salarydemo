@@ -24,7 +24,8 @@ public class UserController {
 
     @GET
     @Path("/{userId}")
-    public User getUserById(@PathVariable("userId") String userId) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getUserById(@PathParam("userId") String userId) {
         if (StringUtils.isEmpty(userId)) {
             return null;
         }
@@ -46,6 +47,7 @@ public class UserController {
 
     @GET
     @Path("/list")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<User> queryAllUsers() {
         return userService.queryAll();
     }

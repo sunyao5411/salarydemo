@@ -4,7 +4,6 @@ import com.eastern.maintenance.salary.domain.Position;
 import com.eastern.maintenance.salary.service.PositionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
@@ -19,7 +18,7 @@ public class PositionController {
 
     @GET
     @Path("/{positionId}")
-    public Position getPositionById(@PathVariable("positionId") String positionId) {
+    public Position getPositionById(@PathParam("positionId") String positionId) {
         Position postion = positionService.findById(positionId);
         return postion;
     }

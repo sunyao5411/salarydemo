@@ -4,7 +4,6 @@ import com.eastern.maintenance.salary.domain.Salary;
 import com.eastern.maintenance.salary.service.SalaryService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
@@ -19,7 +18,7 @@ public class SalaryController {
 
     @GET
     @Path("/{salaryId}")
-    public Salary getSalaryById(@PathVariable("salaryId") String salaryId) {
+    public Salary getSalaryById(@PathParam("salaryId") String salaryId) {
         Salary salary = salaryService.findById(salaryId);
         return salary;
     }

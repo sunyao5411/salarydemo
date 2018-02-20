@@ -10,7 +10,6 @@ import javax.ws.rs.ApplicationPath;
 @SpringBootApplication
 @ComponentScan(basePackages = "com.eastern.maintenance.salary")
 @MapperScan(basePackages = "com.eastern.maintenance.salary.dao")
-@ApplicationPath("/v1")
 public class SalaryApplication {
 
 	public static void main(String[] args) {
